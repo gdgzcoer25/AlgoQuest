@@ -1,3 +1,7 @@
+// Problem Link: https://leetcode.com/problems/powx-n/
+
+// You can send pull request of your solution (Only correct and 1st pull request will be accepted)
+
 class Solution {
     public double helper(double x, long n) {
         if(n == 0) {
