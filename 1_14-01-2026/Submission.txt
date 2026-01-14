@@ -1,3 +1,5 @@
 Your_full_name or UserId = submission link (image for gfg problem)
 
 UserId = submission link
+
+Vinayak Jaywant Gawade = https://leetcode.com/problems/powx-n/submissions/1884607872
