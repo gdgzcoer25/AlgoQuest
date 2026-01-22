@@ -3,29 +3,28 @@
 // You can send pull request of your solution (only 1st correct pr will get merged)
 
 // java code
+import java.util.*;
 
 class Solution {
-    public int[][] merge(int[][] arr) {
-        int n = arr.length;
-        
-        // Step 1: Sort intervals by start time
-        Arrays.sort(arr, (a, b) -> Integer.compare(a[0], b[0]));
+    public int[][] merge(int[][] intervals) {
+        if (intervals.length <= 1) return intervals;
 
-        int index = 0; // Points to the last merged interval in arr
-        
-        // Step 2: Merge intervals in-place
-        for (int i = 1; i < n; i++) {
-            // If intervals overlap, merge them
-            if (arr[i][0] <= arr[index][1]) {
-                arr[index][1] = Math.max(arr[index][1], arr[i][1]);
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+
+        List<int[]> merged = new ArrayList<>();
+        merged.add(intervals[0]);
+
+        for (int i = 1; i < intervals.length; i++) {
+            int[] last = merged.get(merged.size() - 1);
+            int[] current = intervals[i];
+
+            if (current[0] <= last[1]) {
+                last[1] = Math.max(last[1], current[1]);
             } else {
-                // Move the non-overlapping interval forward
-                index++;
-                arr[index] = arr[i]; // Copy arr[i] to new position
+                merged.add(current);
             }
         }
 
-        // Step 3: Copy the first (index + 1) elements as the result
-        return Arrays.copyOf(arr, index + 1);
+        return merged.toArray(new int[merged.size()][]);
     }
 }
